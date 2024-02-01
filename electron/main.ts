@@ -1,15 +1,6 @@
 import {app, BrowserWindow, ipcMain} from 'electron'
+import {autoUpdater} from "electron-updater";
 import path from 'path'
-
-// The built directory structure
-//
-// ├─┬ dist-electron
-// │ ├─┬ main
-// │ │ └── index.js
-// │ ├─┬ preload
-// │ │ └── index.js
-// │ ├─┬ renderer
-// │ │ └── index.html
 
 process.env.ROOT = path.join(__dirname, '..')
 process.env.DIST = path.join(process.env.ROOT, 'dist-electron')
@@ -39,10 +30,11 @@ async function createWindow() {
         win.webContents.openDevTools()
     } else {
         await win.loadFile(path.join(process.env.VITE_PUBLIC!, 'index.html'))
+
+        autoUpdater.checkForUpdatesAndNotify()
     }
 }
 
-// app.on('ready', async () => {
 app.whenReady().then(async () => {
     await createWindow()
 

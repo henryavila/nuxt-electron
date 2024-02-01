@@ -1,16 +1,29 @@
 {
   "name": "nuxt-electron-template",
-  "version": "1.0.0",
-  "author": "Henry Ávila",
+  "productName": "Nuxt Electron Template",
   "description": "Nuxt.js 3  with TailwindCSS + Electron project template",
   "license": "MIT",
+  "version": "0.1.0",
+  "private": true,
+  "author": {
+    "name": "Henry Ávila",
+    "email": "dev@henryavila.com"
+  },
   "main": "dist-electron/main.js",
+  "build": {
+    "appId": "com.henryavila.nuxt-electron-template"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/henryavila/nuxt-electron.git"
+  },
   "scripts": {
     "dev": "nuxi dev",
-    "build": "nuxi build --prerender && electron-builder",
+    "icon": "electron-icon-builder --input=./resources/icon.png --output=./build --flatten",
+    "build": "npm run icon && nuxi build && electron-builder -p never",
+    "publish": "npm run icon && nuxi build && electron-builder -p always",
     "start": "electron-builder start",
-    "cert": "electron-builder create-self-signed-cert",
-    "make": "npm run build"
+    "cert": "electron-builder create-self-signed-cert"
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^6.11.2",
@@ -20,9 +33,10 @@
     "nuxt-electron": "^0.7.0",
     "tree-kill": "^1.2.2",
     "vite-plugin-electron-renderer": "^0.14.5",
-    "electron-builder": "^24.9.1"
+    "electron-builder": "^24.9.1",
+    "electron-icon-builder": "^2.0.1"
   },
   "dependencies": {
-    "electron-squirrel-startup": "^1.0.0"
+    "electron-updater": "^6.1.7"
   }
 }

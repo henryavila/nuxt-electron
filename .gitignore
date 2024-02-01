@@ -3,3 +3,6 @@ dist-electron
 release
 .nuxt
 .idea
+node_modules
+dist
+build/icons

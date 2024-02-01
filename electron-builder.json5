@@ -2,7 +2,7 @@
  * @see https://www.electron.build/configuration/configuration
  */
 {
-  "appId": "com.henryavila.template",
+  "appId": "com.henryavila.nuxt-electron-template",
   "asar": false,
   "directories": {
     "output": "release/${version}"
@@ -10,6 +10,9 @@
   "files": [
     ".output/**/*",
     "dist-electron"
+  ],
+  "publish": [
+    'github'
   ],
   "mac": {
     "artifactName": "${productName}_${version}.${ext}",
@@ -32,6 +35,6 @@
     "oneClick": false,
     "perMachine": false,
     "allowToChangeInstallationDirectory": true,
-    "deleteAppDataOnUninstall": false
+    "deleteAppDataOnUninstall": true
   }
 }
